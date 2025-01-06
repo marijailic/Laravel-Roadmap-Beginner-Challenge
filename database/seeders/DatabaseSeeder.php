@@ -23,13 +23,13 @@ class DatabaseSeeder extends Seeder
 
         $category = Category::factory()->create();
 
-        $article = Article::factory()->create([
+        $articles = Article::factory(3)->create([
             'user_id' => $user->id,
             'category_id' => $category->id,
         ]);
 
         $tag = Tag::factory()->create();
 
-        $article->tags()->attach($tag);
+        $articles[0]->tags()->attach($tag);
     }
 }
