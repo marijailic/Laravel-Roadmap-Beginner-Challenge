@@ -39,10 +39,14 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
+        $validated = $request->validated();
 
-        $article = Article::create(
-            $request->validated()->except('tags')
-        );
+        $article = Article::create([
+            'title' => $validated['title'],
+            'body' => $validated['body'],
+            'user_id' => Auth::id(),
+            'category_id' => $validated['category_id'],
+        ]);
 
         $article->tags()->attach($request->validated('tags'));
 
@@ -62,7 +66,10 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('article.edit', compact('article'));
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view('article.edit', compact('article', 'categories', 'tags'));
     }
 
     /**

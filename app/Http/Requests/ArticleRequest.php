@@ -16,10 +16,9 @@ class ArticleRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:50'],
             'body' => ['required', 'string', 'max:2048'],
-            'user_id' => ['required', 'uuid', 'exists:users,id'],
-            'category_id' => ['required', 'uuid', 'exists:category,id'],
+            'category_id' => ['required', 'uuid', 'exists:categories,id'],
             'tags' => ['sometimes', 'array'],
-            'tags.*' => ['required_with:tags', 'string', 'max:20'],
+            'tags.*' => ['required_with:tags', 'uuid', 'exists:tags,id'],
         ];
     }
 }
