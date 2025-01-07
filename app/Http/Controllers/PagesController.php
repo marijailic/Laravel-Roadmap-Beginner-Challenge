@@ -8,7 +8,7 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::paginate();
 
         return view("pages.home", compact("articles"));
     }

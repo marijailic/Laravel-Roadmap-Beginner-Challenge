@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $category = Category::factory()->create();
 
-        $articles = Article::factory(3)->create([
+        $articles = Article::factory(30)->create([
             'user_id' => $user->id,
             'category_id' => $category->id,
         ]);

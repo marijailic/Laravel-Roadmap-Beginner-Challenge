@@ -18,7 +18,7 @@ class ArticlesController extends Controller
         $articles = Article::query()
             ->where('user_id', Auth::id())
             ->with(["category", "tags"])
-            ->get();
+            ->paginate();
 
         return view('article.index', compact('articles'));
     }
